@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/*
+  COLOR PALETTE
+  Calm indigo + periwinkle with a fresh aqua accent.
+  Change these values to re-theme the whole app.
+*/
+@theme {
+  --color-ink: #1c1a3a;        /* headings, dark surfaces */
+  --color-body: #4b5170;       /* normal text */
+  --color-muted: #8a90ad;      /* secondary text */
+  --color-mist: #f4f6fc;       /* page background */
+  --color-card: #ffffff;       /* panels */
+  --color-line: #dfe3f2;       /* borders */
+  --color-primary: #5b5bd6;    /* buttons, links */
+  --color-primary-dark: #4343b8;
+  --color-lilac: #ebeaff;      /* soft highlight */
+  --color-aqua: #2dd4bf;       /* accent */
+  --color-aqua-dark: #0f9e8e;
+  --color-danger: #e11d48;
+
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base styles go in the "base" layer so Tailwind classes can override them. */
+@layer base {
+  html {
+    background: var(--color-mist);
+    color: var(--color-body);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 2px;
+  }
+}
+
+/* Reusable styles. Use them like normal Tailwind classes: className="btn-primary" */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-primary text-white hover:bg-primary-dark;
+}
+@utility btn-ghost {
+  @apply btn border border-line bg-card text-ink hover:border-primary hover:text-primary;
+}
+@utility panel {
+  @apply rounded-2xl border border-line bg-card;
+}
+@utility field-label {
+  @apply mb-1.5 block text-sm font-semibold text-ink;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
